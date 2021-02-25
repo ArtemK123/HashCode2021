@@ -1,7 +1,6 @@
 const fs = require("fs");
 const { parseInput } = require("./parse");
-const { getStreetLoad } = require("./getStreetLoad");
-const { simple } = require("./algorithms/simple");
+const greenLightsSolution = require("./algorithms/greenLightsSolution");
 const { createOutput } = require("./createOutput");
 
 fs.readFile("./inputs/a.txt", "utf8" , (readingError, input) => {
@@ -11,8 +10,12 @@ fs.readFile("./inputs/a.txt", "utf8" , (readingError, input) => {
   }
   try {
     const system = parseInput(input);
-    const res = simple(system);
+    console.log("Parsed input:");
+    console.log(system);
+    const res = greenLightsSolution.compute(system);
     const output = createOutput(res);
+    console.log("\n\n\nOutput:");
+    console.log(output);
     fs.writeFile('result.txt', output, () => {});
   }
   catch (error) {
