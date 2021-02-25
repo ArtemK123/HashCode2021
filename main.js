@@ -1,5 +1,6 @@
 const fs = require("fs")
 const { parseInput } = require("./parse");
+const { getStreetLoad } = require("./getStreetLoad");
 
 fs.readFile("./inputs/a.txt", "utf8" , (readingError, input) => {
   if (readingError) {
@@ -7,9 +8,10 @@ fs.readFile("./inputs/a.txt", "utf8" , (readingError, input) => {
     return;
   }
   try {
-    console.log(parseInput(input));
+    const system = parseInput(input);
+    console.log(getStreetLoad(system));
   }
-  catch (parsingError) {
-    console.log(parsingError);
+  catch (error) {
+    console.log(error);
   }
 })
