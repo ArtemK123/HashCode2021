@@ -1,6 +1,8 @@
-const fs = require("fs")
+const fs = require("fs");
 const { parseInput } = require("./parse");
 const { getStreetLoad } = require("./getStreetLoad");
+const { simple } = require("./algorithms/simple");
+const { createOutput } = require("./createOutput");
 
 fs.readFile("./inputs/a.txt", "utf8" , (readingError, input) => {
   if (readingError) {
@@ -9,35 +11,9 @@ fs.readFile("./inputs/a.txt", "utf8" , (readingError, input) => {
   }
   try {
     const system = parseInput(input);
-    console.log(getStreetLoad(system));
-    const outputExample = [
-      {
-        id: 1,
-        lights: [
-          {
-            street: "street1",
-            T: 10
-          },
-          {
-            street: "street2",
-            T: 1
-          }
-        ]
-      },
-      {
-        id: 13,
-        lights: [
-          {
-            street: "street3",
-            T: 2
-          },
-          {
-            street: "street4",
-            T: 3
-          }
-        ]
-      }
-    ]
+    const res = simple(system);
+    const output = createOutput(res);
+    fs.writeFile('result.txt', output, () => {});
   }
   catch (error) {
     console.log(error);

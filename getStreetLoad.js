@@ -1,3 +1,5 @@
+const { syncBuiltinESMExports } = require("module")
+
 function getStreetLoad(system) {
   const streetsLoadDictionary = {};
   system.cars.forEach(car => {

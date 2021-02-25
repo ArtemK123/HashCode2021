@@ -9,5 +9,7 @@ function createOutput(data) {
             solution += `${tl.street} ${tl.T}${separator}`;
         });
     });
-    return simple_solution.trim();
+    return solution.trim();
 }
+
+exports.createOutput = createOutput;
